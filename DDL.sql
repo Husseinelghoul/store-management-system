@@ -10,7 +10,7 @@ CREATE TABLE EMPLOYEE(
 	name		VARCHAR(150) NOT NULL,
     salary		INT NOT NULL,
     emailAddress		VARCHAR(150) NOT NULL UNIQUE,
-    phoneNumber        INT NOT NULL UNIQUE,
+    phoneNumber        VARCHAR(150) NOT NULL,
     employeeStatus              BOOL NOT NULL,
     branchID    INT NOT NULL,
 	PRIMARY KEY (employeeID)
