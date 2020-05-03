@@ -1,11 +1,11 @@
 INSERT INTO SUPPLIER VALUES
-(1, 'Sanita', 01234567),
-(2, 'Chamsine', 03418178),
-(3, 'Pepsi Cola', 76024494),
-(4, 'Nestle', 05430905),
-(5, 'Fantasia', 09586147),
-(6, 'Mars Company', 07895631),
-(7, 'AlWadi AlAkhdar', 01552418);
+(1, 'Sanita', '01234567'),
+(2, 'Chamsine', '03418178'),
+(3, 'Pepsi Cola', '76024494'),
+(4, 'Nestle', '05430905'),
+(5, 'Fantasia', '09586147'),
+(6, 'Mars Company', '07895631'),
+(7, 'AlWadi AlAkhdar', '01552418');
 
 INSERT INTO PRODUCT VALUES 
 ('001525241', 3, 'Pepsi Can', '2021-12-12', 750, 500),
