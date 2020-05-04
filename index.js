@@ -4,11 +4,9 @@ const mysql = require('mysql');
 const app = express();
 const port = 3000;
 
-config = require('./config.json');
-
 app.set('view engine', 'pug');
 
-var connection = mysql.createPool(config['dbstring']);
+var connection = mysql.createPool(process.env.CLEARDB_DATABASE_URL);
   
 app.get('/', (req, res) => {
     res.render('main');
