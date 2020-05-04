@@ -2,6 +2,12 @@ extends main
 
 block content
     h2 Products:
-    ul.list-group
+    .container
         each product in products
-            a.list-group-item.list-group-item-action(href=`product/${product['barcode']}`)= product['name']
+            .card
+                //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
+                .card-body
+                    h5.card-title #{product['name']}
+                    h6.card-subtitle.mb-2.text-muted #{product['retailPrice']} LL
+                    a.card-link(href=`product/${product['barcode']}`) View product
+                    a.card-link(href='#') Make Order

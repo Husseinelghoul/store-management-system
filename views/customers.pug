@@ -1,0 +1,14 @@
+extends main
+
+block content
+    h2 Customers:
+    .container
+        each customer in customers
+            .card
+                //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
+                .card-body
+                    h5.card-title #{customer['name']}
+                    h6.card-subtitle.mb-2.text-muted #{customer['emailAddress'] || customer['phoneNumber']}
+                    a.card-link(href=`customer/${customer['customerID']}`) View Customer
+                    a.card-link(href='#') See Transactions
+

@@ -1,0 +1,15 @@
+extends main
+
+block content
+    h2 Suppliers:
+    .container
+        each supplier in suppliers
+            .card
+                //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
+                .card-body
+                    h5.card-title #{supplier['name']}
+                    h6.card-subtitle.mb-2.text-muted #{supplier['phoneNumber']}
+                    a.card-link(href=`supplier/${supplier['supplierID']}`) View Supplier
+                    a.card-link(href='#') Make order
+
+

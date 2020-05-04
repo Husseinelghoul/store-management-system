@@ -1,0 +1,14 @@
+extends main
+
+block content
+    h2 Employees:
+    .container
+        each employee in employees
+            .card
+                //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
+                .card-body
+                    h5.card-title #{employee['name']}
+                    h6.card-subtitle.mb-2.text-muted #{employee['emailAddress']}
+                    a.card-link(href=`employee/${employee['employeeID']}`) View Employee
+                    a.card-link(href='#') See Transactions
+
