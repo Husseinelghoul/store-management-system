@@ -14,11 +14,8 @@ html(lang="en")
     title Store Management System
     
   body
-    div.container-fluid
-        h2 Products:
-        ul.list-group
-            each product in products
-                ul.list-group-item= product['name']
+    //- everytime it is filled with something (dynamic)
+    block content
 
     //- Optional JavaScript here
 
