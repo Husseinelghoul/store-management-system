@@ -8,19 +8,28 @@ config = require('./config.json');
 
 app.set('view engine', 'pug');
 
-// BETTER THAN HARDCODING
-var connection = mysql.createConnection(config['dbstring']);
+var connection = mysql.createPool(config['dbstring']);
   
-app.get('/', function(req, res){
-    connection.query('SELECT * FROM PRODUCT', function (err, products) {
+app.get('/', (req, res) => {
+    res.render('main');
+});
+
+app.get('/products', function(req, res){
+    connection.query('SELECT * FROM PRODUCT', function(err, products) {
         if (err) throw err;
         res.render('products', {products: products});
     });
 });
 
 app.get('/product/:barcode', function(req, res){
-    // SELECT * FROM PRODUCT WHERE barcode = ${req.params['barcode']}
-    res.render('product', {barcode: req.params['barcode']});
+    connection.query(`SELECT * FROM PRODUCT WHERE barcode=?`, [req.params['barcode']], function(err, rows) {
+        if (err) throw err;
+        res.render('product', {product: rows[0]});
+    });
 })
+
+app.get('/customers', (req, res) => {
+    res.render('main');
+});
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

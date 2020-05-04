@@ -1,4 +1,6 @@
 extends main
 
 block content
-    h1= barcode
+    ul
+        each value, key in product
+            li #{key}: #{value}
