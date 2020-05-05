@@ -1,30 +1,14 @@
 extends main
 
 block content
-    .row
-        .dropdown
-                button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                    | Sort By
-                .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                    a.dropdown-item(href='customers/byName') Name
-                    a.dropdown-item(href='customers/byID') ID
-                    a.dropdown-item(href='customers/active') See only active customers
-                    a.dropdown-item(href='customers/inactive') See inactive customers
-        .button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal')
-            | Add Customer  
-            // Modal
-        #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
-            .modal-d    ialog(role='document')
-                .modal-content
-                    .modal-header
-                        h5#exampleModalLabel.modal-title Add Employee
-                        button.close(type='button', data-dismiss='modal', aria-label='Close')
-                            span(aria-hidden='true') ×
-                    .modal-body
-                        | under construction
-                    .modal-footer
-                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                        button.btn.btn-primary(type='button') Save changes
+    .dropdown
+            button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                | Sort By
+            .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                a.dropdown-item(href='customers/byName') Name
+                a.dropdown-item(href='customers/byID') ID
+                a.dropdown-item(href='customers/active') See only active customers
+                a.dropdown-item(href='customers/inactive') See inactive customers
     h2 Customers:
     .container
         each customer in customers

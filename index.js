@@ -4,7 +4,8 @@ const mysql = require('mysql');
 const app = express();
 const port = 3000;
 config = require('./config.json');
-
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug');
 
 var connection = mysql.createPool(config['dbstring']);
@@ -162,7 +163,22 @@ app.get('/supplier/:supplierID', function(req, res){
         res.render('supplier', {supplier: rows[0]});
     });
 })
-
+app.post('/addSupplier', function(req, res){
+    var _name = req.body.name
+    var _phoneNumber = req.body.phoneNumber
+    console.log(_phoneNumber)
+    values = [
+        [_name,_phoneNumber]
+    ]
+    name = [[_name]]
+    connection.query(`INSERT INTO SUPPLIER (name,phoneNumber) VALUES ?`,[values],function(err, supplier) {
+        if (err) throw err;
+    });
+    connection.query(`SELECT * FROM supplier WHERE name=?`, `${[req.body.name]}`, function(err, rows) {
+        if (err) throw err;
+        res.render('supplier', {supplier: rows[0]});
+    });
+})
 
 app.get('/stock', (req, res) => {
     res.render('main');

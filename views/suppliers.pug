@@ -11,5 +11,19 @@ block content
                     h6.card-subtitle.mb-2.text-muted #{supplier['phoneNumber']}
                     a.card-link(href=`supplier/${supplier['supplierID']}`) View Supplier
                     a.card-link(href='#') Make order
-
-
+    h3 Add Supplier:
+    <form action="/addSupplier" method="post">
+        <div class="col-md-4 mb-3">
+        <label for="validationDefault01">Supplier name</label>
+        <input type="text" class="form-control" name="name"  id="validationDefault01" placeholder="Supplier name" required>
+        </div>
+        <div class="col-md-4 mb-3">
+        <label for="validationDefaultUsername">Phone Number</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend2">+961</span>
+            </div>
+            <input type="tel" class="form-control" name="phoneNumber" id="phonum" placeholder="Phone Number" aria-describedby="inputGroupPrepend2" pattern="[0-9]{8}"  required>
+        </div>
+    <button class="btn btn-primary" type="submit">Submit form</button>
+    </form>

@@ -1,32 +1,16 @@
 extends main
 
 block content
-    .row
-        .dropdown
-                button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                    | Sort By
-                .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                    a.dropdown-item(href='employees/byName') Name
-                    a.dropdown-item(href='employees/byID') ID
-                    a.dropdown-item(href='employees/bySalary') Salary
-                    a.dropdown-item(href='employees/byBranch') Branch
-                    a.dropdown-item(href='employees/active') See only active employees
-                    a.dropdown-item(href='employees/inactive') See previous employees
-        .button.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal')
-            | Add Employee  
-        // Modal
-        #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
-            .modal-dialog(role='document')
-                .modal-content
-                    .modal-header
-                        h5#exampleModalLabel.modal-title Add Employee
-                        button.close(type='button', data-dismiss='modal', aria-label='Close')
-                            span(aria-hidden='true') ×
-                    .modal-body
-                        | under construction
-                    .modal-footer
-                        button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                        button.btn.btn-primary(type='button') Save changes
+    .dropdown
+            button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                | Sort By
+            .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                a.dropdown-item(href='employees/byName') Name
+                a.dropdown-item(href='employees/byID') ID
+                a.dropdown-item(href='employees/bySalary') Salary
+                a.dropdown-item(href='employees/byBranch') Branch
+                a.dropdown-item(href='employees/active') See only active employees
+                a.dropdown-item(href='employees/inactive') See previous employees
 
 
 
