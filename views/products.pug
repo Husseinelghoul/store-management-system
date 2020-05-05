@@ -1,6 +1,14 @@
 extends main
 
 block content
+    .dropdown
+            button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                | Sort By
+            .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                a.dropdown-item(href='products/byName') Name
+                a.dropdown-item(href='products/byPrice') Price
+                a.dropdown-item(href='products/bySupplier') Supplier
+                a.dropdown-item(href='#') Quantity
     h2 Products:
     .container
         each product in products

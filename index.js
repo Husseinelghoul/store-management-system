@@ -3,7 +3,6 @@ const mysql = require('mysql');
 
 const app = express();
 const port = 3000;
-
 config = require('./config.json');
 
 app.set('view engine', 'pug');
@@ -20,6 +19,26 @@ app.get('/products', function(req, res){
         res.render('products', {products: products});
     });
 });
+//Sort products by
+app.get('/products/byName', function(req, res){
+    connection.query('SELECT * FROM PRODUCT ORDER BY Name', function(err, products) {
+        if (err) throw err;
+        res.render('products', {products: products});
+    });
+});
+app.get('/products/byPrice', function(req, res){
+    connection.query('SELECT * FROM PRODUCT ORDER BY retailprice', function(err, products) {
+        if (err) throw err;
+        res.render('products', {products: products});
+    });
+});
+app.get('/products/bySupplier', function(req, res){
+    connection.query('SELECT * FROM PRODUCT ORDER BY supplier', function(err, products) {
+        if (err) throw err;
+        res.render('products', {products: products});
+    });
+});
+
 app.get('/product/:barcode', function(req, res){
     connection.query(`SELECT * FROM PRODUCT WHERE barcode=?`, [req.params['barcode']], function(err, rows) {
         if (err) throw err;
@@ -33,7 +52,30 @@ app.get('/customers', function(req, res){
         res.render('customers', {customers: customers});
     });
 });
-
+app.get('/customers/byName', function(req, res){
+    connection.query('SELECT * FROM CUSTOMER ORDER BY NAME', function(err, customers) {
+        if (err) throw err;
+        res.render('customers', {customers: customers});
+    });
+});
+app.get('/customers/byID', function(req, res){
+    connection.query('SELECT * FROM CUSTOMER ORDER BY customerID', function(err, customers) {
+        if (err) throw err;
+        res.render('customers', {customers: customers});
+    });
+});
+app.get('/customers/active', function(req, res){
+    connection.query('SELECT * FROM CUSTOMER WHERE customerStatus = 1', function(err, customers) {
+        if (err) throw err;
+        res.render('customers', {customers: customers});
+    });
+});
+app.get('/customers/inactive', function(req, res){
+    connection.query('SELECT * FROM CUSTOMER WHERE customerStatus = 0', function(err, customers) {
+        if (err) throw err;
+        res.render('customers', {customers: customers});
+    });
+});
 app.get('/customer/:customerID', function(req, res){
     connection.query(`SELECT * FROM CUSTOMER WHERE customerID=?`, [req.params['customerID']], function(err, rows) {
         if (err) throw err;
@@ -49,7 +91,42 @@ app.get('/employees', function(req, res){
         res.render('employees', {employees: employees});
     });
 });
-
+app.get('/employees/byName', function(req, res){
+    connection.query('SELECT * FROM EMPLOYEE ORDER BY name', function(err, employees) {
+        if (err) throw err;
+        res.render('employees', {employees: employees});
+    });
+});
+app.get('/employees/bySalary', function(req, res){
+    connection.query('SELECT * FROM EMPLOYEE ORDER BY salary', function(err, employees) {
+        if (err) throw err;
+        res.render('employees', {employees: employees});
+    });
+});
+app.get('/employees/byID', function(req, res){
+    connection.query('SELECT * FROM EMPLOYEE ORDER BY employeeID', function(err, employees) {
+        if (err) throw err;
+        res.render('employees', {employees: employees});
+    });
+});
+app.get('/employees/byBranch', function(req, res){
+    connection.query('SELECT * FROM EMPLOYEE ORDER BY branchID', function(err, employees) {
+        if (err) throw err;
+        res.render('employees', {employees: employees});
+    });
+});
+app.get('/employees/active', function(req, res){
+    connection.query('SELECT * FROM EMPLOYEE WHERE employeeStatus = 1', function(err, employees) {
+        if (err) throw err;
+        res.render('employees', {employees: employees});
+    });
+});
+app.get('/employees/inactive', function(req, res){
+    connection.query('SELECT * FROM EMPLOYEE WHERE employeeStatus = 0', function(err, employees) {
+        if (err) throw err;
+        res.render('employees', {employees: employees});
+    });
+});
 app.get('/employee/:employeeID', function(req, res){
     connection.query(`SELECT * FROM EMPLOYEE WHERE employeeID=?`, [req.params['employeeID']], function(err, rows) {
         if (err) throw err;
