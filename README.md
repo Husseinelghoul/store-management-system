@@ -14,9 +14,18 @@ requires [Node.js](https://nodejs.org/) to run.
 Install the dependencies and devDependencies and start the server.
 
 ```sh
-$ cd dillinger
 $ npm install -d
 $ nodemon
+```
+
+add a `nodemon.json` file in root directory with the following config:
+```json
+{
+    "env": {
+        "CLEARDB_DATABASE_URL": ""
+    },
+    "ext": "js pug"
+}
 ```
 
    [MySQL]: <http://mysql.com>
