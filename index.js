@@ -1,18 +1,19 @@
-const express = require('express');
-const mysql = require('mysql');
+const express    = require('express');
+const mysql      = require('mysql');
+const bodyParser = require('body-parser');
+const port       = 3000;
+const app        = express();
 
-const app = express();
-const port = 3000;
-config = require('./config.json');
-var bodyParser = require('body-parser');
+var connection = mysql.createPool(process.env.CLEARDB_DATABASE_URL);
+
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('view engine', 'pug');
 
-var connection = mysql.createPool(config['dbstring']);
+app.set('view engine', 'pug');
   
 app.get('/', (req, res) => {
     res.render('main');
 });
+
 //Products
 app.get('/products', function(req, res){
     connection.query('SELECT * FROM PRODUCT', function(err, products) {
