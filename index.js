@@ -1,7 +1,7 @@
 const express    = require('express');
 const mysql      = require('mysql');
 const bodyParser = require('body-parser');
-const port       = 3000;
+const port       = process.env.PORT || 3000;
 const app        = express();
 
 var connection = mysql.createPool(process.env.CLEARDB_DATABASE_URL);
