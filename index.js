@@ -166,7 +166,6 @@ app.get('/supplier/:supplierID', function(req, res){
 app.post('/addSupplier', function(req, res){
     var _name = req.body.name
     var _phoneNumber = req.body.phoneNumber
-    console.log(_phoneNumber)
     values = [
         [_name,_phoneNumber]
     ]
@@ -177,6 +176,20 @@ app.post('/addSupplier', function(req, res){
     connection.query(`SELECT * FROM supplier WHERE name=?`, `${[req.body.name]}`, function(err, rows) {
         if (err) throw err;
         res.render('supplier', {supplier: rows[0]});
+    });
+})
+app.post('/editSupplier', function(req, res){
+    var _name = req.body.name
+    var _phoneNumber = req.body.phoneNumber
+    var _id = req.body.id
+    data = [_name,_phoneNumber,_id] 
+
+    connection.query(`UPDATE SUPPLIER SET name=? ,phoneNumber=? Where supplierID=?`,data,function(err, supplier) {
+        if (err) throw err;
+    });
+    connection.query('SELECT * FROM supplier', function(err, suppliers) {
+        if (err) throw err;
+        res.render('suppliers', {suppliers: suppliers});
     });
 })
 
