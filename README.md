@@ -11,14 +11,8 @@ We use a number of open source projects to work properly:
 
 ### Installation
 requires [Node.js](https://nodejs.org/) to run.
-Install the dependencies and devDependencies and start the server.
 
-```sh
-$ npm install -d
-$ nodemon
-```
-
-add a `nodemon.json` file in root directory with the following config:
+add a file named `nodemon.json` in the root directory with the following config:
 ```json
 {
     "env": {
@@ -26,6 +20,13 @@ add a `nodemon.json` file in root directory with the following config:
     },
     "ext": "js pug"
 }
+```
+
+Install the dependencies and devDependencies and start the server.
+
+```sh
+$ npm install
+$ npx nodemon
 ```
 
    [MySQL]: <http://mysql.com>
