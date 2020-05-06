@@ -13,14 +13,14 @@ router.get('/', function(req, res){
     
     connection.query(`SELECT * FROM CUSTOMER ${f} ${c}`, function(err, customers) {
         if (err) throw err;
-        res.render('customers', {customers: customers});
+        res.render('customer/customers', {customers: customers});
     });
 });
 
 router.get('/:customerID', function(req, res){
     connection.query(`SELECT * FROM CUSTOMER WHERE customerID=?`, [req.params['customerID']], function(err, rows) {
         if (err) throw err;
-        res.render('customer', {customer: rows[0]});
+        res.render('customer/customer', {customer: rows[0]});
     });
 });
 

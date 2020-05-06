@@ -17,7 +17,7 @@ router.get('/', function(req, res){
 router.get('/:barcode', function(req, res){
     connection.query(`SELECT * FROM PRODUCT WHERE barcode=?`, [req.params['barcode']], function(err, rows) {
         if (err) throw err;
-        if(rows[0]) res.render('products/product', {product: rows[0]});
+        if(rows[0]) res.render('product/product', {product: rows[0]});
         else res.status(404).end('not found');
     });
 });

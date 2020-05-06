@@ -7,14 +7,14 @@ const connection = mysql.createPool(process.env.CLEARDB_DATABASE_URL);
 router.get('/', function(req, res){
     connection.query('SELECT * FROM supplier', function(err, suppliers) {
         if (err) throw err;
-        res.render('suppliers', {suppliers: suppliers});
+        res.render('supplier/suppliers', {suppliers: suppliers});
     });
 });
 
 router.get('/:supplierID', function(req, res){
     connection.query(`SELECT * FROM supplier WHERE supplierID=?`, [req.params['supplierID']], function(err, rows) {
         if (err) throw err;
-        res.render('supplier', {supplier: rows[0]});
+        res.render('supplier/supplier', {supplier: rows[0]});
     });
 });
 
@@ -30,7 +30,7 @@ router.post('/addSupplier', function(req, res){
     });
     connection.query(`SELECT * FROM supplier WHERE name=?`, `${[req.body.name]}`, function(err, rows) {
         if (err) throw err;
-        res.render('supplier', {supplier: rows[0]});
+        res.render('supplier/supplier', {supplier: rows[0]});
     });
 });
 
@@ -45,7 +45,7 @@ router.post('/editSupplier', function(req, res){
     });
     connection.query('SELECT * FROM supplier', function(err, suppliers) {
         if (err) throw err;
-        res.render('suppliers', {suppliers: suppliers});
+        res.render('supplier/suppliers', {suppliers: suppliers});
     });
 });
 
