@@ -1,0 +1,11 @@
+extends ../main
+
+block content
+	h1 #{name}
+	form(method='POST', action='/product/edit')
+		#form-group
+			label Barcode:
+			input.form-control(name='barcode', type='text', value=Barcode)
+		#form-group
+			label Supplier:
+			input.form-control(name='supplier', type='text'. value= Supplier)

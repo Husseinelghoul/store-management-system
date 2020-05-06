@@ -1,0 +1,23 @@
+extends ../main
+
+block content
+    .dropdown
+            button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                | Sort By
+            .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                a.dropdown-item(href='transactions?sort=transactionNumber') Transaction Number
+                a.dropdown-item(href='transactions?sort=total') Total
+                a.dropdown-item(href='transactions?sort=customerID') Customer
+                a.dropdown-item(href='transactions?sort=employeeID') Employee
+
+    h2 Transactions:
+    .container
+        each transaction in transactions
+                .card
+                    //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
+                    .card-body
+                        h5.card-title #{transaction['transactionNumber']}
+                        h6.card-subtitle.mb-2.text-muted #{transaction['total']} LL
+                        a.card-link(href=`transactions/${transaction['transactionNumber']}`) View details
+
+
