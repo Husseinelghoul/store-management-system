@@ -1,21 +1,20 @@
-extends main
+extends ../main
 
 block content
     .dropdown
             button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
                 | Sort By
             .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                a.dropdown-item(href='products/byName') Name
-                a.dropdown-item(href='products/byPrice') Price
-                a.dropdown-item(href='products/bySupplier') Supplier
+                a.dropdown-item(href='products?sort=name') Name
+                a.dropdown-item(href='products?sort=retailprice') Price
+                a.dropdown-item(href='products?sort=supplier') Supplier
                 a.dropdown-item(href='#') Quantity
     h2 Products:
     .container
         each product in products
             .card
-                //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
                 .card-body
                     h5.card-title #{product['name']}
                     h6.card-subtitle.mb-2.text-muted #{product['retailPrice']} LL
-                    a.card-link(href=`product/${product['barcode']}`) View product
+                    a.card-link(href=`products/${product['barcode']}`) View product
                     a.card-link(href='#') Make Order

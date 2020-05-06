@@ -1,4 +1,4 @@
-extends main
+extends ../main
 
 block content
     h2 Branches:
@@ -8,7 +8,7 @@ block content
                 //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
                 .card-body
                     h5.card-title #{branch['branchAddress']}
-                    a.card-link(href=`branch/${branch['branchID']}`) View Branch
+                    a.card-link(href=`branches/${branch['branchID']}`) View Branch
                     a.card-link(href='#') See Transactions
                     a.card-link(href='#') See Stock
 
