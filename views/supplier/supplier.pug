@@ -5,7 +5,7 @@ block content
         each value, key in supplier
             li #{key}: #{value}
     h3 Edit Supplier:
-    <form action="/editSupplier" method="post">
+    <form action="suppliers/editSupplier" method="post">
         <div class="col-md-4 mb-3">
         <label for="validationDefault01">Supplier's ID</label>
         <input  class="form-control" value =#{supplier['supplierID']} name = "id" readonly>
