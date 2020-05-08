@@ -18,5 +18,6 @@ block content
                 .card-body
                     h5.card-title #{customer['name']}
                     h6.card-subtitle.mb-2.text-muted #{customer['emailAddress'] || customer['phoneNumber']}
-                    a.card-link(href=`customers/${customer['customerID']}`) View Customer
+                    a.card-link(href=`customers/customer/${customer['customerID']}`) View Customer
                     a.card-link(href='#') See Transactions
+    <a href="customers/addCustomerView"class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">Add Customer</a>

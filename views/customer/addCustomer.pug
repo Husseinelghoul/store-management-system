@@ -1,11 +1,8 @@
 extends ../main
 
 block content
-    ul
-        each value, key in customer
-            li #{key}: #{value}
-    h3 Edit Customer:
-    h5    <form action="customers/editCustomer" method="post">
+    h1 Add Customer:
+    h5    <form action="customers/addCustomer" method="post">
         <div class="form-row">
             <div class="form-group col-md-6">
             <label for="validationDefault01">Customer's Name</label>
@@ -30,18 +27,15 @@ block content
             <label for="inputEmail4">Email Address</label>
             <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="Email">
             </div>
-            <div class="form-group col-md-6">
-                <label for="validationDefault01">Customer's ID</label>
-                <input  class="form-control" value =#{customer['customerID']} name = "id" readonly>
+            <div class="form-group col-md-4">
+            <label for="inputState">Branch</label>
+            <select class="form-control" id="sel1" name="branch">
+                each branch in branches
+                    each value, key in branch
+                        <option> #{value}</option>
+                </select>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        if customer['customerStatus']
-            <form action="customers/deactivateCustomer/#{customer['customerID']}" method="post">
-                <button type="submit" class="btn btn-danger btn-lg btn-block">Deactivate Customer</button>
-            </form>
-
-        else
-            <form action="customers/activateCustomer/#{customer['customerID']}" method="post">
-                <button type="submit" class="btn btn-success btn-lg btn-block">Activate Customer</button>
-            </form>
+    

@@ -47,26 +47,26 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 
 INSERT INTO CUSTOMER VALUES
-(01, 22, 'Jon Snow', 'Castle Black Road', 'jsnow@hotmail.com', '01445232',1),
-(01, 05, 'Darth Vader', 'Death Star Avenue', 'DaVader92@hotmail.com', NULL,1),
-(01, 65, 'Homer Simpson', 'Springfield', NULL, NULL,1),
-(02, 02, 'Mitchell Smith', NULL, NULL, '01468121',1),
-(02, 12, 'Gareth Bale', NULL, NULL, NULL,1),
-(02, 43, 'Bernie Sanders', NULL, 'Bsanders@hotmail.com', '01444242',1),
-(02, 44, 'Carlos Ghosn', 'Fugutive Road', NULL, NULL,1),
-(02, 45, 'Walter White', 'Albaquerque', NULL, '03423675',1),
-(02, 68, 'Joe Exotic', 'Jail Avenue', NULL, NULL,1),
-(02, 76, 'Catherine Maryland', NULL, NULL, NULL,1),
-(01, 89, 'James Bond', NULL, 'jbond07@hotmail.com', NULL,1),
-(01, 24, 'Lee Sizemore', NULL, 'ItzLee@gmail.com', '01224411',1),
-(01, 23, 'Meghan Fox', NULL, 'MeghanFox90@gmail..com', NULL,1),
-(01, 14, 'Fayrouz', NULL, NULL, 03442564,1),
-(03, 10, 'Fadlo Khouri', 'American University of Beirut', NULL, NULL,1),
-(03, 06, 'Barack Obama', NULL, 'Obamacare4@hotmail.com', '03776332',1),
-(03, 54, 'Felix Kjelberg', 'Brighton', 'KjelbergPie@gmail.com', NULL,1),
-(03, 55, 'Peter Griffin', NULL, NULL, NULL,1),
-(03, 19, 'Tyler Blevins', NULL, 'Tyler1994Blevins@hotmail.com', NULL,1),
-(03, 18, 'Beyonce', NULL, 'Beyo4521@hotmail.com', NULL,1);
+(22, 'Jon Snow', 'Castle Black Road', 'jsnow@hotmail.com', '01445232',1,01),
+(05, 'Darth Vader', 'Death Star Avenue', 'DaVader92@hotmail.com', NULL,1,01),
+(65, 'Homer Simpson', 'Springfield', NULL, NULL,1,01),
+(02, 'Mitchell Smith', NULL, NULL, '01468121',1,02),
+(12, 'Gareth Bale', NULL, NULL, NULL,1,02),
+(43, 'Bernie Sanders', NULL, 'Bsanders@hotmail.com', '01444242',1,02),
+(44, 'Carlos Ghosn', 'Fugutive Road', NULL, NULL,1,02),
+(45, 'Walter White', 'Albaquerque', NULL, '03423675',1,02),
+(68, 'Joe Exotic', 'Jail Avenue', NULL, NULL,1,02),
+(76, 'Catherine Maryland', NULL, NULL, NULL,1,02),
+(89, 'James Bond', NULL, 'jbond07@hotmail.com', NULL,1,01),
+(24, 'Lee Sizemore', NULL, 'ItzLee@gmail.com', '01224411',1,01),
+(23, 'Meghan Fox', NULL, 'MeghanFox90@gmail..com', NULL,1,01),
+(14, 'Fayrouz', NULL, NULL, 03442564,1,01),
+(10, 'Fadlo Khouri', 'American University of Beirut', NULL, NULL,1,03),
+(06, 'Barack Obama', NULL, 'Obamacare4@hotmail.com', '03776332',1,03),
+(54, 'Felix Kjelberg', 'Brighton', 'KjelbergPie@gmail.com', NULL,1,03),
+(55, 'Peter Griffin', NULL, NULL, NULL,1,03),
+(19, 'Tyler Blevins', NULL, 'Tyler1994Blevins@hotmail.com', NULL,1,03),
+(18, 'Beyonce', NULL, 'Beyo4521@hotmail.com', NULL,1,03);
 
 
 INSERT INTO STOCK VALUES

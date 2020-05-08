@@ -4,3 +4,12 @@ block content
     ul
         each value, key in employee
             li #{key}: #{value}
+    if employee['employeeStatus']
+        <form action="employees/deactivateEmployee/#{employee['employeeID']}" method="post">
+            <button type="submit" class="btn btn-danger btn-lg btn-block">Deactivate Employee</button>
+        </form>
+
+    else
+        <form action="employees/activateEmployee/#{employee['employeeID']}" method="post">
+            <button type="submit" class="btn btn-success btn-lg btn-block">Activate Employee</button>
+        </form>
