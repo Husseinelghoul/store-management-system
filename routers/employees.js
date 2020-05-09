@@ -23,12 +23,14 @@ router.get('/employee/:employeeID', function(req, res){
         res.render('employee/employee', {employee: rows[0]});
     });
 });
+
 router.get('/addEmployeeView', (req, res) => {
-    connection.query(`SELECT branchAddress FROM branch `, function(err, branches){
+    connection.query(`SELECT branchAddress FROM branch`, function(err, branches){
         if(err) throw err;
-            res.render('employee/addEmployee',{branches:branches});
+            res.render('employee/addEmployee', {branches: branches});
     })
 });
+
 router.post('/addEmployee', function(req, res){
     var _name = req.body.name;
     var _phoneNumber = req.body.phoneNumber;
@@ -48,26 +50,47 @@ router.post('/addEmployee', function(req, res){
     });
     res.render("main")
 });
-router.post('/activateEmployee/:employeeID', function(req, res){
-    var _id = req.params['employeeID'];
-    data = [1,_id]
-    connection.query(`UPDATE employee SET employeeStatus=? Where employeeID=?`,data,function(err, employee) {
+
+router.post('/edit', function(req, res){
+    // var _name = req.body.name;
+    // var _id = req.body.id;
+    // var _address = (req.body.address== "" ? null : req.body.address);
+    // var _phoneNumber = (req.body.phoneNumber== "" ? null : req.body.phoneNumber);
+    // var _emailAddress = (req.body.email== "" ? null : req.body.email);
+    // data = [_name,_address,_emailAddress,_phoneNumber,_id];
+    
+    let attributes = ['name', 'email', 'phoneNumber', 'status', 'id'];
+    let values = attributes.map(a => req.body[a]);
+    
+    connection.query(`UPDATE employee SET name=?, emailAddress=?, phoneNumber=?, employeeStatus=? WHERE employeeID=?`, values, function(err, _) {
         if (err) throw err;
+        res.redirect('employee/'+req.body['id']);
     });
-    connection.query(`SELECT * FROM employee WHERE employeeID=?`, [req.params['employeeID']], function(err, rows) {
-        if (err) throw err;
-        res.render('employee/employee', {employee: rows[0]});
-    });
+
 });
-router.post('/deactivateEmployee/:employeeID', function(req, res){
-    var _id = req.params['employeeID'];
-    data = [0,_id]
-    connection.query(`UPDATE employee SET employeeStatus=? Where employeeID=?`,data,function(err, employee) {
-        if (err) throw err;
-    });
-    connection.query(`SELECT * FROM employee WHERE employeeID=?`, [req.params['employeeID']], function(err, rows) {
-        if (err) throw err;
-        res.render('employee/employee', {employee: rows[0]});
-    });
-});
+
+// router.post('/activateEmployee/:employeeID', function(req, res){
+//     var _id = req.params['employeeID'];
+//     data = [1,_id]
+//     connection.query(`UPDATE employee SET employeeStatus=? Where employeeID=?`,data,function(err, employee) {
+//         if (err) throw err;
+//     });
+//     connection.query(`SELECT * FROM employee WHERE employeeID=?`, [req.params['employeeID']], function(err, rows) {
+//         if (err) throw err;
+//         res.render('employee/employee', {employee: rows[0]});
+//     });
+// });
+
+// router.post('/deactivateEmployee/:employeeID', function(req, res){
+//     var _id = req.params['employeeID'];
+//     data = [0,_id]
+//     connection.query(`UPDATE employee SET employeeStatus=? Where employeeID=?`,data,function(err, employee) {
+//         if (err) throw err;
+//     });
+//     connection.query(`SELECT * FROM employee WHERE employeeID=?`, [req.params['employeeID']], function(err, rows) {
+//         if (err) throw err;
+//         res.render('employee/employee', {employee: rows[0]});
+//     });
+// });
+
 module.exports = router;

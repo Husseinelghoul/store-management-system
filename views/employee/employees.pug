@@ -1,24 +1,26 @@
 extends ../main
 
 block content
-    .dropdown
-            button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                | Sort By
-            .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                a.dropdown-item(href='employees?sort=name') Name
-                a.dropdown-item(href='employees?sort=customerID') ID
-                a.dropdown-item(href='employees?sort=salary') Salary
-                a.dropdown-item(href='employees?sort=branchID') Branch
-                a.dropdown-item(href='employees?status=1') See only active employees
-                a.dropdown-item(href='employees?status=0') See previous employees
-
     h2 Employees:
-    .container
-        each employee in employees
-            .card(style=(employee['employeeStatus'] ? null : 'background-color: LightGray'))
-                .card-body
-                    h5.card-title #{employee['name']}
-                    h6.card-subtitle.mb-2.text-muted #{employee['emailAddress']}
-                    a.card-link(href=`employees/employee/${employee['employeeID']}`) View Employee
-                    a.card-link(href='#') See Transactions
-    <a href="employees/addEmployeeView"class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">Add Employee</a>
+
+    .dropdown
+        button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+            | Sort By
+        .dropdown-menu(aria-labelledby='dropdownMenuButton')
+            a.dropdown-item(href='employees?sort=name') Name
+            a.dropdown-item(href='employees?sort=customerID') ID
+            a.dropdown-item(href='employees?sort=salary') Salary
+            a.dropdown-item(href='employees?sort=branchID') Branch
+            a.dropdown-item(href='employees?status=1') See only active employees
+            a.dropdown-item(href='employees?status=0') See previous employees
+
+        .container
+            <a href="employees/addEmployeeView"class="btn btn-success btn-lg" role="button" aria-pressed="true">Add Employee</a>
+            .con
+            each employee in employees
+                .card(style=(employee['employeeStatus'] ? null : 'background-color: LightGray'))
+                    .card-body
+                        h5.card-title #{employee['name']}
+                        h6.card-subtitle.mb-2.text-muted #{employee['emailAddress']}
+                        a.card-link(href=`employees/employee/${employee['employeeID']}`) View Employee
+                        a.card-link(href='#') See Transactions

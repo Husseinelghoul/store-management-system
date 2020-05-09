@@ -1,0 +1,21 @@
+extends ../main 
+
+block content
+    <h3>add transaction</h3>
+    p not final yet, look at POST /transactions/addTransactions code please in transactions.js file
+    <form method="post" action="transactions/addTransaction">
+        <div class="form-group">
+            <input class="form-control" name="customer" placeholder="customer"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="employee" placeholder="employee"/>
+        </div>
+        <div id="product-list">
+        </div>
+        <button type="button" id="add-product-field" class="btn btn-secondary">Add Product</button>
+        <input type="submit" value="Submit" type="button" id="add-product-field" class="btn btn-primary"/>
+    </form>
+
+block scripts
+    script
+        include addTransaction.js
