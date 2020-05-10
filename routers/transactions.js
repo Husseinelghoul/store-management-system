@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const async = require('async');
 var express = require('express');
 var router  = express.Router();
 
@@ -31,19 +32,37 @@ router.get('/addTransaction', function(req, res){
 router.post('/addTransaction', function(req, res){
     customer = req.body['customer'];
     employee = req.body['employee'];
-    
-    // create transaction using info above
-    connection.query('', function(err, _){
-        items = [];
-        for(idx = 0; req.body[`b${idx}`]; idx++)
-            items.push({
-                'barcode': req.body[`b${idx}`],
-                'quantity': req.body[`q${idx}`] 
-            });
 
-        connection.query('', function(err, _){
-            res.redirect('addTransaction');
-        });
+    date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+    // 1. create transaction with employee and customer
+    // 2. insert product values to includes
+
+    async.waterfall([
+        function(done){
+            connection.query('INSERT INTO transaction (customerID, employeeID, date) VALUES (?, ?, ?)', 
+                [customer, employee, date], function(err, results, fields){
+                done(err, results.insertId)
+            });
+        },
+        function(insertId, done){
+            console.log('created insertid '+insertId);
+            valueTuples = [];
+            for(idx = 0; req.body[`b${idx}`]; idx++){
+                b = req.body[`b${idx}`];
+                q = req.body[`q${idx}`];
+                valueTuples.push(mysql.format('(?, ?, ?)', [b, insertId, q]));
+            }
+            sql = 'INSERT INTO include VALUES ' + valueTuples.join(', ');
+            connection.query(sql, 
+                [customer, employee, date], function(err, _){
+                if(err) throw err;
+                res.redirect('/transactions');
+                done(null);
+            });
+        }
+    ], function(err){
+
     });
 
 });
