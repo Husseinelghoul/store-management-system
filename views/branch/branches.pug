@@ -5,11 +5,13 @@ block content
     .container
         each branch in branches
             .card
-                //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
                 .card-body
                     h5.card-title #{branch['branchAddress']}
-                    a.card-link(href=`branches/${branch['branchID']}`) View Branch
-                    a.card-link(href='#') See Transactions
-                    a.card-link(href='#') See Stock
+                    .row
+                        a.card-link(href=`branches/${branch['branchID']}`) View Branch
+                        a.card-link(href=`branches/transactions/${branch['branchID']}`) View Transactions
+                    .row    
+                        a.card-link(href=`branches/stock/${branch['branchID']}`) View Stock
+                        a.card-link(href=`branches/customers/${branch['branchID']}`) Check Customers
 
 

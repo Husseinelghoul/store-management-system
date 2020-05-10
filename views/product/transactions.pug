@@ -6,7 +6,8 @@ block content
         each transaction in transactions
                 .card
                     .card-body
-                        h5.card-title #{transaction['transactionNumber']}
-                        h6.card-subtitle.mb-2.text-muted #{transaction['total']} LL
+                        h5.card-title Transaction ID: #{transaction['transactionNumber']}
+                        h6.card-subtitle.mb-2.text-muted Customer ID: #{transaction['customerID']}
+                        h6.card-subtitle.mb-2.text-muted Employee ID: #{transaction['employeeID']}
                         a.card-link(href=`transactions/transaction/${transaction['transactionNumber']}`) View details
 

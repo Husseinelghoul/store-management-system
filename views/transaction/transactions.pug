@@ -6,7 +6,7 @@ block content
                 | Sort By
             .dropdown-menu(aria-labelledby='dropdownMenuButton')
                 a.dropdown-item(href='transactions?sort=transactionNumber') Transaction Number
-                a.dropdown-item(href='transactions?sort=total') Total
+                a.dropdown-item(href='transactions?sort=date') Date
                 a.dropdown-item(href='transactions?sort=customerID') Customer
                 a.dropdown-item(href='transactions?sort=employeeID') Employee
 
@@ -14,10 +14,11 @@ block content
     .container
         each transaction in transactions
                 .card
-                    //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
                     .card-body
-                        h5.card-title #{transaction['transactionNumber']}
-                        h6.card-subtitle.mb-2.text-muted #{transaction['total']} LL
+                        h5.card-title Transaction ID: #{transaction['transactionNumber']}
+                        h6.card-subtitle.mb-2.text-muted Customer ID: #{transaction['customerID']}
+                        h6.card-subtitle.mb-2.text-muted Employee ID: #{transaction['employeeID']}
                         a.card-link(href=`transactions/transaction/${transaction['transactionNumber']}`) View details
+
         <a href="transactions/addTransaction"class="btn btn-success btn-block" role="button" aria-pressed="true">Create New Transaction</a>
 

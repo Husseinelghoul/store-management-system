@@ -1,0 +1,13 @@
+extends ../main
+
+block content
+    h2 Stock:
+    .container
+        each product in products
+            .card
+                .card-body
+                    h5.card-title #{product['name']}
+                    h6.card-subtitle.mb-2.text-muted #{product['retailPrice']} LL
+                    h6.card-subtitle.mb-2.text-muted  Quanity : #{product['quantity']} 
+                    a.card-link(href=`products/product/${product['barcode']}`) View product
+

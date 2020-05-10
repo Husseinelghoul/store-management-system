@@ -1,0 +1,12 @@
+extends ../main
+
+block content
+    h2 Branch Customers:
+    .container
+        each customer in customers
+            .card(style=(customer['customerStatus'] ? null : 'background-color: lightgray' ))
+                //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
+                .card-body
+                    h5.card-title #{customer['name']}
+                    h6.card-subtitle.mb-2.text-muted #{customer['emailAddress'] || customer['phoneNumber']}
+                    a.card-link(href=`customers/customer/${customer['customerID']}`) View Customer

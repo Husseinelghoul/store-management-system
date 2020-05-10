@@ -4,3 +4,20 @@ block content
     ul
         each value, key in branch
             li #{key}: #{value}
+    h2 Branch Employees
+    .container            
+    each employee in employees
+        if(employeeID=branch['managerID'])
+            .card(style=(employee['employeeStatus'] ? null : 'background-color: LightGray'))
+                .card-body
+                    h5.card-title #{employee['name']}
+                    h6.card-subtitle.mb-2.text-muted #{employee['emailAddress']}
+                    a.card-link(href=`employees/employee/${employee['employeeID']}`) View Employee
+                    a.card-link(href=`employees/transactions/${employee['employeeID']}`) See Transactions
+        else
+            .card(style=(employee['employeeStatus'] ? null : 'background-color: LightGray'))
+                .card-body
+                    h5.card-title #{employee['name']}
+                    h6.card-subtitle.mb-2.text-muted #{employee['emailAddress']}
+                    a.card-link(href=`employees/employee/${employee['employeeID']}`) View Employee
+                    a.card-link(href=`employees/transactions/${employee['employeeID']}`) See Transactions
