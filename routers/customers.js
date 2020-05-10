@@ -25,39 +25,33 @@ router.get('/customer/:customerID', function(req, res){
 });
 
 router.get('/addCustomerView', (req, res) => {
-    connection.query(`SELECT branchAddress FROM branch `, function(err, branches){
+    connection.query(`SELECT branchID, branchAddress FROM branch `, function(err, branches){
         if(err) throw err;
             res.render('customer/addCustomer',{branches:branches});
     })
 });
 
 router.post('/addCustomer', function(req, res){
+
     var _name = req.body.name
     var _address = (req.body.address== "" ? null : req.body.address);
     var _phoneNumber = (req.body.phoneNumber== "" ? null : req.body.phoneNumber);
     var _emailAddress = (req.body.email== "" ? null : req.body.email);
-    var _branchAddress = req.body.branch
-    var id = connection.query(`SELECT branchID from branch WHERE branchAddress =?`,[_branchAddress],function(err, results) {
-            if (err) throw err;
-            id =  results[0];
-        })
-    
+    var _branch = req.body.branch
+    console.log(req.body)
     values = [
-        [_name,_address,_emailAddress, _phoneNumber,1,01]
+        [_name,_address,_emailAddress, _phoneNumber,1, _branch]
     ]
     connection.query(`INSERT INTO Customer (name,deliveryAddress,emailAddress,phoneNumber,customerStatus,branchID) VALUES ?`,[values],function(err, supplier) {
         if (err) throw err;
+        connection.query(`SELECT * FROM CUSTOMER`, function(err, customers) {
+            if (err) throw err;
+            res.render('customer/customers', {customers: customers});
+        });
     });
-    res.render("main")
 });
 
 router.post('/edit', function(req, res){
-    // var _name = req.body.name;
-    // var _id = req.body.id;
-    // var _address = (req.body.address== "" ? null : req.body.address);
-    // var _phoneNumber = (req.body.phoneNumber== "" ? null : req.body.phoneNumber);
-    // var _emailAddress = (req.body.email== "" ? null : req.body.email);
-    // data = [_name,_address,_emailAddress,_phoneNumber,_id];
 
     let attributes = ['name', 'address', 'email', 'phoneNumber', 'status', 'id'];
     let values = attributes.map(a => req.body[a]);
@@ -68,26 +62,4 @@ router.post('/edit', function(req, res){
     });
 });
 
-// router.post('/activateCustomer/:customerID', function(req, res){
-//     var _id = req.params['customerID'];
-//     data = [1,_id]
-//     connection.query(`UPDATE Customer SET customerStatus=? Where customerID=?`,data,function(err, customer) {
-//         if (err) throw err;
-//     });
-//     connection.query(`SELECT * FROM CUSTOMER WHERE customerID=?`, [req.params['customerID']], function(err, rows) {
-//         if (err) throw err;
-//         res.render('customer/customer', {customer: rows[0]});
-//     });
-// });
-// router.post('/deactivateCustomer/:customerID', function(req, res){
-//     var _id = req.params['customerID'];
-//     data = [0,_id]
-//     connection.query(`UPDATE Customer SET customerStatus=? Where customerID=?`,data,function(err, customer) {
-//         if (err) throw err;
-//     });
-//     connection.query(`SELECT * FROM CUSTOMER WHERE customerID=?`, [req.params['customerID']], function(err, rows) {
-//         if (err) throw err;
-//         res.render('customer/customer', {customer: rows[0]});
-//     });
-// });
 module.exports = router;

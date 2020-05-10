@@ -10,21 +10,24 @@ block content
             </div>
             <div class="form-group col-md-2">
                 <label for="validationDefault01">Branch ID</label>
-                input(class="form-control" value=employee['branchID'] readonly)
+                <select class="form-control" id="sel1" name="branch">
+                each branch in branches
+                        <option value=#{branch['branchID']}>#{branch['branchAddress']} </option>
+                </select>
             </div>
             <div class="form-group col-md-2">
                 <label for="validationDefault01">Status</label>
-                input(class="form-control" value=employee['employeeStatus'] name= "status")
+                input(class="form-control" value=employee['employeeStatus'] name= "status" required="required")
             </div>
             <div class="form-group col-md-6">
                 <label for="validationDefault01">Customer's Name</label>
-                input(type="text" class="form-control" name="name" id="validationDefault01" placeholder="Name" value=employee['name'])
+                input(type="text" class="form-control" name="name" id="validationDefault01" placeholder="Name" value=employee['name'] required="required")
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputEmail4">Email Address</label>
-                input(value=employee['emailAddress'] type="email" class="form-control" id="inputEmail4" name="email" placeholder="Email")
+                input(value=employee['emailAddress'] type="email" class="form-control" id="inputEmail4" name="email" placeholder="Email" required="required")
             </div>
             <div class="form-group col-md-6">
                 <label for="validationDefaultUsername">Phone Number</label>
@@ -32,19 +35,9 @@ block content
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupPrepend2">+961</span>
                     </div>
-                    input(value=employee['phoneNumber'] type="tel" class="form-control" name="phoneNumber" id="phonum" placeholder="Phone Number" aria-describedby="inputGroupPrepend2" pattern="[0-9]{8}")
+                    input(value=employee['phoneNumber'] type="tel" class="form-control" name="phoneNumber" id="phonum" placeholder="Phone Number" aria-describedby="inputGroupPrepend2" pattern="[0-9]{8}" required="required")
                 </div>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
-
-    //- if employee['employeeStatus']
-    //-     <form action="employees/deactivateEmployee/#{employee['employeeID']}" method="post">
-    //-         <button type="submit" class="btn btn-danger btn-lg btn-block">Deactivate Employee</button>
-    //-     </form>
-
-    //- else
-    //-     <form action="employees/activateEmployee/#{employee['employeeID']}" method="post">
-    //-         <button type="submit" class="btn btn-success btn-lg btn-block">Activate Employee</button>
-    //-     </form>

@@ -31,8 +31,7 @@ block content
             <label for="inputState">Branch</label>
             <select class="form-control" id="sel1" name="branch">
                 each branch in branches
-                    each value, key in branch
-                        <option> #{value}</option>
+                        <option value=#{branch['branchID']}>#{branch['branchAddress']} </option>
                 </select>
             </div>
         </div>

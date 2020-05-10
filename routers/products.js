@@ -23,31 +23,22 @@ router.get('/product/:barcode', function(req, res){
 });
 
 router.get('/addProductView', (req, res) => {
-    connection.query(`SELECT name FROM supplier `, function(err, suppliers){
+    connection.query(`SELECT name, supplierID FROM supplier ORDER BY supplierID`, function(err, suppliers){
         if(err) throw err;
             res.render('product/addProduct',{suppliers:suppliers});
     })
 });
 
 router.post('/addProduct', function(req, res){
-    var _bar = req.body.bar
-    var _name = req.body.name
-    var _expiry = req.body.expiry;
-    var _retail = req.body.retail;
-    var _supply = req.body.supply;
-    var _suppliername = req.body.suppliername
-    var id = connection.query(`SELECT supplierID from supplier WHERE name =?`,[_suppliername],function(err, results) {
-            if (err) throw err;
-            id =  results[0];
-        })
+    let attributes = ['bar','name', 'expiry', 'retail', 'supply', 'supplier'];
+    let values = attributes.map(a => req.body[a]);
     
-    values = [
-        [_bar,_name,_expiry,_retail, _supply,01]
-    ]
-    connection.query(`INSERT INTO Product (barcode,name,expiryDate,retailPrice,supplierPrice,supplier) VALUES ?`,[values],function(err, supplier) {
+    console.log(values)
+    console.log(req.body)
+    connection.query(`INSERT INTO Product (barcode,name,expiryDate,retailPrice,supplierPrice,supplier) VALUES (?,?,?,?,?,?)`,values,function(err, product) {
         if (err) throw err;
+        res.redirect('product/'+req.body['bar'])
     });
-    res.render("main")
 });
 
 router.post('/edit', function(req, res){
