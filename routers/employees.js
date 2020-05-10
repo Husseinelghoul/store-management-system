@@ -20,7 +20,11 @@ router.get('/', function(req, res){
 router.get('/employee/:employeeID', function(req, res){
     async.waterfall([
         function (done){
-            connection.query(`SELECT * FROM EMPLOYEE WHERE employeeID=?`, [req.params['employeeID']], done);
+            query = `select DISTINCT e.name, e.emailAddress, e.employeeID, e.employeeStatus, e.branchID, e.phoneNumber, e.salary ,m.name as managerName
+            from employee m, employee e, branch b
+            INNER JOIN employee
+            where e.branchID = m.branchID and m.employeeID = b.managerID	and e.employeeID=?`
+            connection.query(query, [req.params['employeeID']], done);
         },
         function (employee, done){
             connection.query(`SELECT * FROM branch`, function(err, rows) {
@@ -30,11 +34,10 @@ router.get('/employee/:employeeID', function(req, res){
         }
     ], function (error) {
         if (error) {
-            //handle readFile error or processFile error here
+            console.log(error)
+            res.send(error);
         }
     });
-    
-
 });
 
 router.get('/addEmployeeView', (req, res) => {
@@ -60,14 +63,21 @@ router.post('/addEmployee', function(req, res){
 
 router.post('/edit', function(req, res){
 
-    let attributes = ['name', 'email', 'phoneNumber', 'status', 'id'];
+    let attributes = ['name', 'email', 'phoneNumber', 'salary', 'status', 'branch','id'];
     let values = attributes.map(a => req.body[a]);
-    
-    connection.query(`UPDATE employee SET name=?, emailAddress=?, phoneNumber=?, employeeStatus=? WHERE employeeID=?`, values, function(err, _) {
+    connection.query(`UPDATE employee SET name=?, emailAddress=?, phoneNumber=?, salary=?, employeeStatus=?, branchID=? WHERE employeeID=?`, values, function(err, _) {
         if (err) throw err;
         res.redirect('employee/'+req.body['id']);
     });
 
+});
+
+router.get('/transactions/:employeeID', (req, res) => {
+    query = `select t.* from employee e, transaction t where t.employeeID = e.employeeID and e.employeeID=?`
+    connection.query(query, [req.params['employeeID']], function(err, transactions){
+        if(err) throw err;
+            res.render('employee/transactions', {transactions: transactions});
+    })
 });
 
 module.exports = router;

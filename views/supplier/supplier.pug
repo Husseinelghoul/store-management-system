@@ -1,9 +1,15 @@
 extends ../main
 
 block content
-    ul
-        each value, key in supplier
-            li #{key}: #{value}
+
+    h1 #{supplier['name']}
+    .row
+        .card
+            .card-body
+                h3.card-title Supplier's ID #{supplier['supplierID']} 
+        .card
+                .card-body
+                    h3.card-title Phone Number #{supplier['phoneNumber']}
     h3 Edit Supplier:
     <form action="suppliers/editSupplier" method="post">
         <div class="col-md-4 mb-3">

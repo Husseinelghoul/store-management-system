@@ -1,6 +1,9 @@
 extends ../main
 
 block content
+    ul
+    each item in stock
+        li #{item['branchAddress']} : #{item['quantity']}
     h3= product['name']
     <form action="products/edit" method="post">
         <div class="form-row">

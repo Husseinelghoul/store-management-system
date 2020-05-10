@@ -10,14 +10,18 @@ router.get('/', function(req, res){
         res.render('supplier/suppliers', {suppliers: suppliers});
     });
 });
-
+router.get('/products/:supplierID', function(req, res){
+    connection.query(`SELECT * FROM product WHERE supplier=?`,[req.params['supplierID']] ,function(err, rows) {
+        if (err) throw err;
+        res.render('supplier/suppliedProducts', {products: rows});
+    });
+});
 router.get('/:supplierID', function(req, res){
     connection.query(`SELECT * FROM supplier WHERE supplierID=?`, [req.params['supplierID']], function(err, rows) {
         if (err) throw err;
         res.render('supplier/supplier', {supplier: rows[0]});
     });
 });
-
 router.post('/addSupplier', function(req, res){
     var _name = req.body.name
     var _phoneNumber = req.body.phoneNumber

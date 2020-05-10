@@ -17,5 +17,5 @@ block content
                     h5.card-title #{product['name']}
                     h6.card-subtitle.mb-2.text-muted #{product['retailPrice']} LL
                     a.card-link(href=`products/product/${product['barcode']}`) View product
-                    a.card-link(href='#') Make Order
+                    a.card-link(href=`products/getTransactions/${product['barcode']}`) See Transactions
     <a href="products/addProductView"class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">Add Product</a>

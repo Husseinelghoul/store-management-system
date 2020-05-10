@@ -1,0 +1,12 @@
+extends ../main
+
+block content
+    h2 Transactions:
+    .container
+        each transaction in transactions
+                .card
+                    .card-body
+                        h5.card-title #{transaction['transactionNumber']}
+                        h6.card-subtitle.mb-2.text-muted #{transaction['total']} LL
+                        a.card-link(href=`transactions/transaction/${transaction['transactionNumber']}`) View details
+

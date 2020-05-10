@@ -21,5 +21,5 @@ block content
                         h5.card-title #{employee['name']}
                         h6.card-subtitle.mb-2.text-muted #{employee['emailAddress']}
                         a.card-link(href=`employees/employee/${employee['employeeID']}`) View Employee
-                        a.card-link(href='#') See Transactions
+                        a.card-link(href=`employees/transactions/${employee['employeeID']}`) See Transactions
     <a href="employees/addEmployeeView"class="btn btn-success btn-lg btn-block" role="button" aria-pressed="true">Add Employee</a>

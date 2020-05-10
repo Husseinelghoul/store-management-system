@@ -5,12 +5,11 @@ block content
     .container
         each supplier in suppliers
             .card
-                //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
                 .card-body
                     h5.card-title #{supplier['name']}
                     h6.card-subtitle.mb-2.text-muted #{supplier['phoneNumber']}
                     a.card-link(href=`suppliers/${supplier['supplierID']}`) View Supplier
-                    a.card-link(href='#') Make order
+                    a.card-link(href=`suppliers/products/${supplier['supplierID']}`) See Products
     h3 Add Supplier:
     <form action="suppliers/addSupplier" method="post">
         <div class="col-md-4 mb-3">
