@@ -8,13 +8,13 @@ block content
             .dropdown-menu(aria-labelledby='dropdownMenuButton')
                 a.dropdown-item(href='customers?sort=name') Name
                 a.dropdown-item(href='customers?sort=customerID') ID
+                a.dropdown-item(href='customers?sort=branchID') Branch
                 a.dropdown-item(href='customers?status=1') See only active customers
                 a.dropdown-item(href='customers?status=0') See inactive customers
     h2 Customers:
     .container
         each customer in customers
             .card(style=(customer['customerStatus'] ? null : 'background-color: lightgray' ))
-                //- img.card-img-top(src='https://shorturl.at/krEY2', alt='Card image cap')
                 .card-body
                     h5.card-title #{customer['name']}
                     h6.card-subtitle.mb-2.text-muted #{customer['emailAddress'] || customer['phoneNumber']}

@@ -32,12 +32,6 @@ router.get('/:branchID', function(req, res){
     });
 });
 
-router.get('/:branchID', function(req, res){
-    connection.query(`SELECT * FROM branch WHERE branchID=?`, [req.params['branchID']], function(err, rows) {
-        if (err) throw err;
-        res.render('branch/branch', {branch: rows[0]});
-    });
-});
 router.get('/stock/:branchID', function(req, res){
     connection.query(`select * from stock s 
     JOIN product on s.branchID=? and productBarcode = barcode`, [req.params['branchID']], function(err, rows) {
