@@ -49,8 +49,33 @@ html(lang="en")
 
     div.container-fluid
         block content
-            div this page is under construction
-
+            H1 Welocome To Your Store Management System
+            .column        
+                .card
+                    .card-body
+                        h5.card-title Transactions
+                        a.card-link(href=`/transactions`) View List
+                .card
+                    .card-body
+                        h5.card-title Customers
+                        a.card-link(href=`/customers`) View List
+                .card
+                    .card-body
+                        h5.card-title Products
+                        a.card-link(href = `/products`) View List
+                .card
+                    .card-body
+                        h5.card-title Employees
+                        a.card-link(href=`/employees`) View List
+                .card
+                    .card-body
+                        h5.card-title Suppliers
+                        a.card-link(href=`/suppliers`) View List
+                .card
+                    .card-body
+                        h5.card-title Branches
+                        a.card-link(href=`/branches`) View List
+        
     script(
         src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
