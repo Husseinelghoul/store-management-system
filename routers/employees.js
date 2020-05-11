@@ -20,10 +20,7 @@ router.get('/', function(req, res){
 router.get('/employee/:employeeID', function(req, res){
     async.waterfall([
         function (done){
-            query = `select DISTINCT e.name, e.emailAddress, e.employeeID, e.employeeStatus, e.branchID, e.phoneNumber, e.salary ,m.name as managerName
-            from employee m, employee e, branch b
-            INNER JOIN employee
-            where e.branchID = m.branchID and m.employeeID = b.managerID and e.employeeID=?`
+            query = `select * from employeewithmanager where employeeID=?`
             connection.query(query, [req.params['employeeID']], done);
         },
         function (employee, done){

@@ -20,7 +20,7 @@ router.get('/transaction/:transactionNumber', function(req, res){
     connection.query(`SELECT * FROM TRANSACTION WHERE transactionNumber=?`, 
     [req.params['transactionNumber']], function(err, rows) {
         if (err) throw err;
-        res.render('transaction/addTransaction', {transaction: rows[0]});
+        res.render('transaction/transaction', {transaction: rows[0]});
     });
 })
 
